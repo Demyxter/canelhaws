@@ -61,10 +61,13 @@ resource "aws_acm_certificate" "canelhasio" {
 }
 
 resource "aws_route53_record" "certificate_validation" {
-  name = "_640a284d3fa01ad48a364a0c7aa3bebd.canelhas.io."
+  name = ""
   type = "CNAME"
   zone_id = aws_route53_zone.canelhasio.zone_id
-  records = [
-    "_31c1df5e8aea34583503577ea40f7d7a.rlltrpyzyf.acm-validations.aws."]
+  records = [""]
   ttl = 300
+  lifecycle {
+
+    ignore_changes = [ name, type, zone_id, records ]
+  }
 }
